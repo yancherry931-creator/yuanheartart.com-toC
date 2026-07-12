@@ -14,19 +14,22 @@
     <main>
       <section class="page-hero"><p class="eyebrow">Shop</p><h1>Hand-painted oil paintings and custom-ready canvas art</h1><p>Use these collections as starting points. Every artwork can be adjusted by size, palette, subject, texture, frame, quantity, and project deadline.</p></section>
       <section class="section">
-        <div class="collection-grid">
-          <a href="abstract-oil-paintings.html" class="collection-card"><img src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=900&q=82" alt="Abstract hand-painted oil paintings" loading="lazy"><span>Abstract Oil Paintings</span></a>
-          <a href="landscape-oil-paintings.html" class="collection-card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=82" alt="Landscape oil paintings" loading="lazy"><span>Landscape Oil Paintings</span></a>
-          <a href="floral-oil-paintings.html" class="collection-card"><img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=82" alt="Floral oil paintings" loading="lazy"><span>Floral Oil Paintings</span></a>
-          <a href="textured-oil-paintings.html" class="collection-card"><img src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&w=900&q=82" alt="Textured oil paintings" loading="lazy"><span>Textured Oil Paintings</span></a>
-        </div>
+        <form class="commerce-bar" data-catalog-filters>
+          <label>Search<input name="q" type="search" placeholder="blue abstract, large neutral painting, hotel wall art"></label>
+          <label>Style<select name="style"><option value="">All styles</option><option>Abstract</option><option>Textured</option><option>Landscape</option><option>Floral</option><option>Minimalist</option><option>Portrait</option></select></label>
+          <label>Room<select name="room"><option value="">All rooms</option><option>Living Room</option><option>Bedroom</option><option>Dining Room</option><option>Office</option><option>Hotel & Commercial</option><option>Gift</option></select></label>
+          <label>Color<select name="color"><option value="">All colors</option><option>Neutral</option><option>Blue</option><option>Green</option><option>Earth Tones</option><option>Black & White</option><option>Colorful</option><option>Custom</option></select></label>
+          <label>Status<select name="status"><option value="">All statuses</option><option>Ready to Ship</option><option>Made to Order</option><option>Customizable Design</option><option>Custom From Photo</option><option>Wholesale / Project</option></select></label>
+        </form>
+        <div class="commerce-meta"><strong data-product-count>Curated products</strong><span>Filters: style, color, orientation, room, status, texture and production type.</span><a href="https://wa.me/8618235608457?text=I%20need%20help%20choosing%20art.%20Here%20is%20my%20wall%20photo%20and%20preferred%20size." target="_blank" rel="noreferrer">Need help choosing a size?</a></div>
+        <div class="product-grid" data-product-grid></div>
       </section>
-      <section class="section">
-        <div class="section-heading"><p class="eyebrow">Product facts</p><h2>What can be customized</h2></div>
-        <div class="policy-grid">
-          <article class="policy-card"><h3>Size and format</h3><p>Square, vertical, horizontal, panoramic, diptych, triptych, gallery wall series, and oversized canvas formats.</p></article>
-          <article class="policy-card"><h3>Style and finish</h3><p>Abstract, landscape, floral, textured, portrait, architecture, decorative, minimal, classical, or reference-led direction.</p></article>
-          <article class="policy-card"><h3>Trade quantity</h3><p>Single custom canvas, sample orders, coordinated series, wholesale batches, and project artwork packages.</p></article>
+      <section class="split-section muted">
+        <div><p class="eyebrow">Buying paths</p><h2>Choose the right order type</h2><p>Ready to Ship works for fast delivery. Made to Order supports size and palette options. Custom From Photo uses a staged approval workflow. Wholesale / Project orders move through quote, sample, deposit, production, QC and balance payment.</p><a class="primary-button dark" href="custom-oil-painting.html">Start Custom Painting</a></div>
+        <div class="proof-grid">
+          <article><strong>Preview before shipping</strong><span>Made-to-order and custom pieces can be confirmed before dispatch.</span></article>
+          <article><strong>cm/inch size clarity</strong><span>Size details are shown in product quick view and can be discussed with wall photos.</span></article>
+          <article><strong>Secure packing</strong><span>Rolled, stretched or framed packing is planned by size and destination.</span></article>
         </div>
       </section>
       <section class="final-cta"><p class="eyebrow">Need a quote?</p><h2>Send dimensions, references, quantity, and delivery country.</h2><a class="primary-button" href="contact.html">Contact Irist</a></section>
