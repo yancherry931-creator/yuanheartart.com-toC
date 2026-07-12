@@ -644,6 +644,11 @@ blockquote {
   transition: transform 700ms ease;
 }
 
+.product-image-link {
+  display: block;
+  overflow: hidden;
+}
+
 .product-card:hover img {
   transform: scale(1.05);
 }
@@ -670,6 +675,41 @@ blockquote {
 .blog-card a {
   color: var(--terracotta);
   font-weight: 800;
+}
+
+.product-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(26px, 5vw, 58px);
+  align-items: start;
+}
+
+.product-detail-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+.product-detail-panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.product-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.product-detail-note {
+  border-left: 3px solid var(--olive);
+  background: rgba(112, 128, 88, 0.08);
+  padding: 14px 16px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .blog-grid {
@@ -1540,7 +1580,8 @@ blockquote {
   .split-section,
   .about-preview,
   .story-section,
-  .contact-section {
+  .contact-section,
+  .product-detail-layout {
     grid-template-columns: 1fr;
   }
 
