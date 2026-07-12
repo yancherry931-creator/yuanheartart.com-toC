@@ -5,10 +5,11 @@
     <title>Secure Checkout | Yuan Heart Art</title>
     <meta name="description" content="Guest checkout request for hand-painted oil paintings, custom artwork deposits, secure invoice and delivery review."><meta name="robots" content="noindex,follow">
     <link rel="canonical" href="https://yuanheartart.com/checkout.html"><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/styles.css">
+    <style>.payment-methods{display:grid;gap:10px;border:0;padding:0;margin:14px 0}.payment-methods legend{margin-bottom:8px;font-weight:900}.payment-option{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:flex-start;border:1px solid rgba(23,20,18,.14);background:rgba(255,255,255,.48);padding:14px;cursor:pointer}.payment-option input{width:auto;margin-top:4px}.payment-option strong,.payment-option small{display:block}.payment-option small{margin-top:4px;color:#6f6962;line-height:1.5}.security-note{border-left:3px solid #607057;background:rgba(112,128,88,.08);padding:12px 14px;color:#6f6962;line-height:1.6}</style>
   </head>
   <body>
     <main>
-      <section class="page-hero"><p class="eyebrow">Secure checkout</p><h1>Review details before payment</h1><p>Guest checkout is supported. For custom and trade orders, Irist sends a secure invoice/payment link after confirming shipping, duties, production and approval terms.</p></section>
+      <section class="page-hero"><p class="eyebrow">Secure checkout</p><h1>Choose payment method before invoice</h1><p>Guest checkout is supported. Yuan Heart Art confirms shipping, duties, production time and approval terms before sending a secure card, PayPal, Wise or bank transfer payment instruction.</p></section>
       <section class="checkout-grid section">
         <form class="checkout-card" data-checkout-form>
           <div class="checkout-progress"><span class="active">Information</span><span>Delivery</span><span>Payment</span><span>Review</span></div>
@@ -18,14 +19,59 @@
           <label>Country<select name="country" required><option>United States</option><option>United Kingdom</option><option>Germany</option><option>France</option><option>Spain</option><option>Canada</option><option>Australia</option><option>Other</option></select></label>
           <label>Address<textarea name="address" rows="3" autocomplete="street-address" placeholder="Used only for delivery quote and customs contact." required></textarea></label>
           <label>Phone<input name="phone" type="tel" placeholder="Used only for delivery updates and customs contact."></label>
+          <label>Payment plan<select name="paymentPlan" required><option value="Full payment after final quote">Full payment after final quote</option><option value="30% deposit to start custom painting">30% deposit to start custom painting</option><option value="Sample payment before wholesale order">Sample payment before wholesale order</option><option value="Balance payment after preview approval">Balance payment after preview approval</option></select></label>
+          <fieldset class="payment-methods" aria-label="Preferred payment method">
+            <legend>Preferred payment method</legend>
+            <label class="payment-option"><input type="radio" name="paymentMethod" value="Credit or debit card secure invoice" checked><span><strong>Credit / Debit Card</strong><small>Secure invoice or payment link. No card data is collected on this website.</small></span></label>
+            <label class="payment-option"><input type="radio" name="paymentMethod" value="PayPal invoice"><span><strong>PayPal Invoice</strong><small>Recommended for retail buyers who prefer buyer-side payment confirmation.</small></span></label>
+            <label class="payment-option"><input type="radio" name="paymentMethod" value="Wise or international bank transfer"><span><strong>Wise / Bank Transfer</strong><small>Suitable for wholesale, samples and larger project orders.</small></span></label>
+            <label class="payment-option"><input type="radio" name="paymentMethod" value="I need payment advice"><span><strong>Help Me Choose</strong><small>Irist will recommend the safest method for your country and order type.</small></span></label>
+          </fieldset>
           <details class="coupon-toggle"><summary>Have a coupon?</summary><label>Coupon code<input name="coupon" placeholder="Optional"></label></details>
-          <div class="quick-facts"><span>Credit card / PayPal / wallet link by invoice</span><span>30% custom deposit option</span><span>Balance after approval</span></div>
+          <div class="security-note"><strong>Payment security:</strong> this checkout never asks for card numbers. Final payment is completed through an official invoice, PayPal request, Wise details or bank instruction after order confirmation.</div>
+          <div class="quick-facts"><span>Card / PayPal by invoice</span><span>30% custom deposit option</span><span>Balance after approval</span><span>Payment failure support</span></div>
           <button type="submit">Request Secure Invoice</button>
           <a class="text-link" href="payment-failed.html">Payment failed?</a>
+          <a class="text-link" href="payment-methods.html">Compare payment methods</a>
         </form>
-        <aside class="checkout-card"><h2>Before payment, we confirm</h2><ul class="spec-list"><li><strong>Production</strong><span>Ready to ship or made to order timing</span></li><li><strong>Delivery</strong><span>Rolled, framed or project packing</span></li><li><strong>Duties</strong><span>Destination duties/taxes may apply unless quoted DDP</span></li><li><strong>Approval</strong><span>Preview before shipment for custom work</span></li></ul><div data-cart-items></div></aside>
+        <aside class="checkout-card"><h2>Before payment, we confirm</h2><ul class="spec-list"><li><strong>Production</strong><span>Ready to ship or made to order timing</span></li><li><strong>Delivery</strong><span>Rolled, framed or project packing</span></li><li><strong>Duties</strong><span>Destination duties/taxes may apply unless quoted DDP</span></li><li><strong>Approval</strong><span>Preview before shipment for custom work</span></li><li><strong>Payment route</strong><span>Card, PayPal, Wise or bank transfer based on order value and country</span></li></ul><div data-cart-items></div></aside>
       </section>
     </main>
     <script src="assets/app.js"></script>
+    <script>
+      (function () {
+        const form = document.querySelector("[data-checkout-form]");
+        if (!form) return;
+        const phone = "8618235608457";
+        function getCart() {
+          try { return JSON.parse(localStorage.getItem("yh-cart")) || []; } catch (_) { return []; }
+        }
+        function productName(id) {
+          const map = {
+            "yh-abs-001": "Quiet Neutral Abstract",
+            "yh-tex-002": "Textured Earth Tone Canvas",
+            "yh-land-003": "Soft Landscape Commission",
+            "yh-floral-004": "Botanical Floral Oil Painting",
+            "yh-large-005": "Large Wall Art Triptych",
+            "yh-port-006": "Custom Portrait From Photo",
+            "yh-min-007": "Minimal Black and White Painting",
+            "yh-hotel-008": "Hospitality Neutral Series"
+          };
+          return map[id] || id;
+        }
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          const data = new FormData(form);
+          const orderId = "YH-" + String(Date.now()).slice(-6);
+          const cartSummary = getCart().map((line) => productName(line.productId) + " (" + line.size + ", qty " + line.qty + ")").join("; ") || "No cart item selected yet";
+          const message = "New checkout request " + orderId + ". Name: " + data.get("firstName") + " " + data.get("lastName") + ". Email: " + data.get("email") + ". Phone: " + (data.get("phone") || "not provided") + ". Country: " + data.get("country") + ". Payment plan: " + data.get("paymentPlan") + ". Preferred payment: " + data.get("paymentMethod") + ". Cart: " + cartSummary + ". Coupon: " + (data.get("coupon") || "none") + ". Please confirm delivery cost and send the secure payment instruction.";
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: "payment_method_selected", order_id: orderId, payment_method: data.get("paymentMethod"), payment_plan: data.get("paymentPlan") });
+          localStorage.setItem("yh-last-order", JSON.stringify({ orderId: orderId, name: data.get("firstName"), email: data.get("email"), country: data.get("country"), paymentMethod: data.get("paymentMethod"), paymentPlan: data.get("paymentPlan"), status: "Order received" }));
+          window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message + "\n\nSource: checkout\nURL: " + window.location.href);
+        }, true);
+      }());
+    </script>
   </body>
 </html>
