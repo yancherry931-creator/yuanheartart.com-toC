@@ -35,12 +35,6 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
-      - name: Download artwork assets
-        run: |
-          mkdir -p public/art
-          for file in artist.jpg popular.png p01.jpg p02.jpg p03.jpg p04.jpg p05.jpg p06.jpg p07.jpg p08.jpg p09.jpg p10.jpg p11.jpg p12.jpg r01.jpg r02.jpg r03.jpg r04.jpg; do
-            curl -fsSL "https://yuanheartart.yancherry931.chatgpt.site/art/$file" -o "public/art/$file"
-          done
       - name: Build static export
         run: pnpm run build:pages
       - name: Setup Pages
